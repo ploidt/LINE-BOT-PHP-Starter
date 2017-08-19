@@ -1,11 +1,11 @@
 <?php
 
 $access_token = 'OS3ckApBsExdHU+lPbwqpN9joiqCF6Xkir7G8+3Odh3yoPU+b3eoZDmu0Yon7wd3xvEg8yA1Q+bBQruqlGC/iy+eUXV+ViUQ76dytwE7pLh8cOvvWj0Et+8bXNSDae/QcyFkeu6tqj6xdQFrtFndSAdB04t89/1O/w1cDnyilFU=';
-$channelSecret = 'dc4aa780d6557e4dc579fc51661eccbd';
+// $channelSecret = 'dc4aa780d6557e4dc579fc51661eccbd';
 
-$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
-$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
-
+// Get POST body content
+$content = file_get_contents('php://input');
+// Parse JSON
 $events = json_decode($content, true);
 // Validate parsed JSON data
 if (!is_null($events['events'])) {
@@ -43,8 +43,6 @@ if (!is_null($events['events'])) {
             curl_close($ch);
 
             echo $result . "\r\n";
-
-            $response = $bot->replyText($replyToken, 'hello!');
         }
     }
 }
