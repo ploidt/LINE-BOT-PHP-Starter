@@ -10,6 +10,7 @@ $url =  "https://api.edamam.com/search?app_id=9d511b82&app_key=dfcce54f444d706e7
 
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
+$multipleMessageBuilder = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
 
 // Get POST body content
 $content = file_get_contents('php://input');
@@ -40,11 +41,11 @@ if (!is_null($events['events'])) {
                 foreach($obj['hits'] as $key => $val){
 
                     $result_text = $val['recipe']['label'];
+                    $multipleMessageBuilder->add(new TextMessageBuilder($result_text));
 
-                    $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($result_text);
-                    $response = $bot->replyMessage($replyToken, $textMessageBuilder);
-                    
                 }
+
+                $response = $bot->replyMessage($replyToken, $multipleMessageBuilder);
 
 
                 if(empty($result_text)){//ไม่พบข้อมูล ตอบกลับไป
