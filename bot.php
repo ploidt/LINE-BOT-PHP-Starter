@@ -22,7 +22,7 @@ if (!is_null($events['events'])) {
             // Get replyToken
             $replyToken = $event['replyToken'];
 
-            $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('hello');
+            $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text);
             $response = $bot->replyMessage($replyToken, $textMessageBuilder);
         }
     }
