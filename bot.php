@@ -49,7 +49,7 @@ if (!is_null($events['events'])) {
                 }
 
             }else{
-                $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($result_text);
+                $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text);
                 $response = $bot->replyMessage($replyToken, $textMessageBuilder);
             }
 
