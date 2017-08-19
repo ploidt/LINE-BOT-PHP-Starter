@@ -6,6 +6,9 @@ $channelSecret = 'dc4aa780d6557e4dc579fc51661eccbd';
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
 
+// Get POST body content
+$content = file_get_contents('php://input');
+
 $events = json_decode($content, true);
 // Validate parsed JSON data
 if (!is_null($events['events'])) {
