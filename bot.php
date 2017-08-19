@@ -2,9 +2,9 @@
 require __DIR__."/vendor/autoload.php";
 
 $access_token = 'OS3ckApBsExdHU+lPbwqpN9joiqCF6Xkir7G8+3Odh3yoPU+b3eoZDmu0Yon7wd3xvEg8yA1Q+bBQruqlGC/iy+eUXV+ViUQ76dytwE7pLh8cOvvWj0Et+8bXNSDae/QcyFkeu6tqj6xdQFrtFndSAdB04t89/1O/w1cDnyilFU=';
-// $channelSecret = ;
+$channelSecret = 'dc4aa780d6557e4dc579fc51661eccbd';
 
-$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('OS3ckApBsExdHU+lPbwqpN9joiqCF6Xkir7G8+3Odh3yoPU+b3eoZDmu0Yon7wd3xvEg8yA1Q+bBQruqlGC/iy+eUXV+ViUQ76dytwE7pLh8cOvvWj0Et+8bXNSDae/QcyFkeu6tqj6xdQFrtFndSAdB04t89/1O/w1cDnyilFU=');
+$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
 
 // Get POST body content
 $content = file_get_contents('php://input');
@@ -47,7 +47,7 @@ if (!is_null($events['events'])) {
 
             echo $result . "\r\n";
 
-            //$response = $bot->replyText($replyToken, 'hello!');
+            $response = $bot->replyText($replyToken, 'hello!');
         }
     }
 }
