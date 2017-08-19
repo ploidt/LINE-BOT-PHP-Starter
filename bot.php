@@ -31,7 +31,7 @@ if (!is_null($events['events'])) {
 
             if($text_ex[0] === "menu" || $text_ex[0] === "Menu"){
                 $search_keyword = trim($text_ex[1]);
-                $search_keyword = htmlspecialchars($search_keyword);
+                $search_keyword = urlencode($search_keyword);
                 $ch1 = curl_init();
                 curl_setopt($ch1, CURLOPT_RETURNTRANSFER, true);
                 curl_setopt($ch1, CURLOPT_URL, $url.$search_keyword);
