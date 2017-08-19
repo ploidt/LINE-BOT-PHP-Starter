@@ -29,7 +29,7 @@ if (!is_null($events['events'])) {
 
             $text_ex = explode(':', $text); //เอาข้อความมาแยก : ได้เป็น Array
 
-            if($text_ex[0] === "menu" || $text_ex[0] === "Menu"){
+            if($text_ex[0] === "menu"){
                 $ch1 = curl_init();
                 curl_setopt($ch1, CURLOPT_RETURNTRANSFER, true);
                 curl_setopt($ch1, CURLOPT_URL, $url.$text_ex[1]);
@@ -41,26 +41,26 @@ if (!is_null($events['events'])) {
                 foreach($obj['hits'] as $key => $val){
 
                     $result_text = $val['recipe']['label'];
-                    $title = $val['recipe']['label'];
-                    $text = $val['recipe']['label'];
-                    $thumbnailImageUrl = $val['recipe']['image'];
-                    $actions = array (
-                      // general message action
-                      // new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder("button 1", "text 1"),
-                      // URL type action
-                      new \LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder("View More", $val['recipe']['url']),
-                      // The following two are interactive actions
-                      // new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("next page", "page=3"),
+                    // $title = $val['recipe']['label'];
+                    // $text = $val['recipe']['label'];
+                    // $thumbnailImageUrl = $val['recipe']['image'];
+                    // $actions = array (
+                    //   // general message action
+                    //   // new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder("button 1", "text 1"),
+                    //   // URL type action
+                    //   new \LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder("View More", $val['recipe']['url']),
+                    //   // The following two are interactive actions
+                    //   // new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("next page", "page=3"),
 
-                    );
+                    // );
 
                     $actions = array (
-                      new \LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder("View More", $val['recipe']['url'])
+                      New \LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder("View More", $val['recipe']['url'])
                     );
                     $img_url = $val['recipe']['image'];
                     $button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder($val['recipe']['label'],$val['recipe']['label'], $img_url, $actions);
                     $outputText = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("Button template builder", $button);
-                    $response = $bot->replyMessage($event->getReplyToken(), $outputText);
+                    $response = $bot->replyMessage($replyToken, $outputText);
 
                     // $multipleMessageBuilder->add(new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($result_text));
 
