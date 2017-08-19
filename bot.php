@@ -29,7 +29,7 @@ if (!is_null($events['events'])) {
 
             $text_ex = explode(':', $text); //เอาข้อความมาแยก : ได้เป็น Array
 
-            if($text_ex[0] === "menu"){
+            if($text_ex[0] === "menu" || $text_ex[0] === "Menu"){
                 $ch1 = curl_init();
                 curl_setopt($ch1, CURLOPT_RETURNTRANSFER, true);
                 curl_setopt($ch1, CURLOPT_URL, $url.$text_ex[1]);
@@ -41,7 +41,18 @@ if (!is_null($events['events'])) {
                 foreach($obj['hits'] as $key => $val){
 
                     $result_text = $val['recipe']['label'];
-                    $multipleMessageBuilder->add(new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($result_text));
+                    $title = $val['recipe']['label'];
+                    $text = $val['recipe']['label'];
+                    $thumbnailImageUrl = $val['recipe']['image'];
+                    $actionBuilders = [
+                      {
+                        "type": "uri",
+                        "label": "View detail",
+                        "uri": $val['recipe']['url']
+                      }
+                  ]
+                    // $multipleMessageBuilder->add(new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($result_text));
+                    $templateMessageBuilder = LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder($title, $text, $thumbnailImageUrl, $actionBuilders);
 
                 }
 
