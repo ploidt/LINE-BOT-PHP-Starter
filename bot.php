@@ -47,7 +47,7 @@ if (!is_null($events['events'])) {
 
             echo $result . "\r\n";
 
-            $response = $bot->replyText($replyToken, 'hello!');
+            //$response = $bot->replyText($replyToken, 'hello!');
         }
     }
 }
