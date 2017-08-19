@@ -54,6 +54,14 @@ if (!is_null($events['events'])) {
 
                     );
 
+                    $actions = array (
+                      new \LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder("View More", $val['recipe']['url'])
+                    );
+                    $img_url = $val['recipe']['image'];
+                    $button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder($val['recipe']['label'],$val['recipe']['label'], $img_url, $actions);
+                    $outputText = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("Button template builder", $button);
+                    $response = $bot->replyMessage($event->getReplyToken(), $outputText);
+
                     // $multipleMessageBuilder->add(new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($result_text));
 
                 }
