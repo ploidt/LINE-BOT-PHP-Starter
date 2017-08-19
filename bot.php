@@ -45,7 +45,7 @@ if (!is_null($events['events'])) {
                     $title = $val['recipe']['label'];
                     $total_calories = $val['recipe']['calories'];
                     $yield = $val['recipe']['yield'];
-                    $calories = floor($calories / $yield)
+                    $calories = floor($calories / $yield);
                     $descritpiton = "Calories: ".$calories;
                     $img_url = $val['recipe']['image'];
 
