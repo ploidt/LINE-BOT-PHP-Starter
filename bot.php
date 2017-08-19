@@ -6,7 +6,7 @@ $channelSecret = 'dc4aa780d6557e4dc579fc51661eccbd';
 $app_id = '9d511b82';
 $app_key = 'dfcce54f444d706e750cffb9e523c9d1';
 
-$url =  "https://api.edamam.com/search?app_id=9d511b82&app_key=dfcce54f444d706e750cffb9e523c9d1&from=0&to=3&q=";
+$url =  "https://api.edamam.com/search?app_id=9d511b82&app_key=dfcce54f444d706e750cffb9e523c9d1&from=0&to=5&q=";
 
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
@@ -43,9 +43,10 @@ if (!is_null($events['events'])) {
 
                     $result_text = $val['recipe']['label'];
                     $title = $val['recipe']['label'];
-                    $calories = $val['recipe']['calories'];
+                    $total_calories = $val['recipe']['calories'];
                     $yield = $val['recipe']['yield'];
-                    $descritpiton = floor($calories / $yield);
+                    $calories = floor($calories / $yield)
+                    $descritpiton = "Calories: ".$calories;
                     $img_url = $val['recipe']['image'];
 
                     $actions = array (
