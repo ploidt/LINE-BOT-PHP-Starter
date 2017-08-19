@@ -30,7 +30,6 @@ if (!is_null($events['events'])) {
 
             if($text_ex[0] === "menu"){
                 $ch1 = curl_init();
-                curl_setopt($ch1, CURLOPT_SSL_VERIFYPEER, false);
                 curl_setopt($ch1, CURLOPT_RETURNTRANSFER, true);
                 curl_setopt($ch1, CURLOPT_URL, $url.$text_ex[1]);
                 $result1 = curl_exec($ch1);
@@ -38,18 +37,21 @@ if (!is_null($events['events'])) {
                 
                 $obj = json_decode($result1, true);
                 
-                foreach($obj['hits']['recipe'] as $key => $val){
+                foreach($obj['hits'] as $key => $val){
 
-                    $result_text = $val['label'];
-                    echo $result_text;
+                    $result_text = $val['recipe']['label'];
+
+                    $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($result_text);
+                    $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+                    
                 }
+
 
                 if(empty($result_text)){//ไม่พบข้อมูล ตอบกลับไป
                     $result_text = 'ไม่พบข้อมูล';
+                    $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($result_text);
+                    $response = $bot->replyMessage($replyToken, $textMessageBuilder);
                 }
-
-                $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($result_text);
-                $response = $bot->replyMessage($replyToken, $textMessageBuilder);
 
             }else{
                 $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text);
