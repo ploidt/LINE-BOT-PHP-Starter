@@ -44,19 +44,19 @@ if (!is_null($events['events'])) {
                     $title = $val['recipe']['label'];
                     $text = $val['recipe']['label'];
                     $thumbnailImageUrl = $val['recipe']['image'];
-                    $actionBuilders = [
-                      {
-                        "type": "uri",
-                        "label": "View detail",
-                        "uri": $val['recipe']['url']
-                      }
-                  ]
+                    // $actionBuilders = [
+                    //   {
+                    //     "type": "uri",
+                    //     "label": "View detail",
+                    //     "uri": $val['recipe']['url'],
+                    //   },
+                    // ];
                     // $multipleMessageBuilder->add(new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($result_text));
-                    $templateMessageBuilder = LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder($title, $text, $thumbnailImageUrl, $actionBuilders);
 
                 }
 
-                $response = $bot->replyMessage($replyToken, $multipleMessageBuilder);
+                $templateMessageBuilder = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder($title, $text, $thumbnailImageUrl, []);
+                $response = $bot->replyMessage($replyToken, $templateMessageBuilder);
 
 
                 if(empty($result_text)){//ไม่พบข้อมูล ตอบกลับไป
