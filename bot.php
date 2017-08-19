@@ -30,9 +30,11 @@ if (!is_null($events['events'])) {
             $text_ex = explode(':', $text); //เอาข้อความมาแยก : ได้เป็น Array
 
             if($text_ex[0] === "menu" || $text_ex[0] === "Menu"){
+                $search_keyword = trim($text_ex[1]);
+                $search_keyword = htmlspecialchars($search_keyword);
                 $ch1 = curl_init();
                 curl_setopt($ch1, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch1, CURLOPT_URL, $url.$text_ex[1]);
+                curl_setopt($ch1, CURLOPT_URL, $url.$search_keyword);
                 $result1 = curl_exec($ch1);
                 curl_close($ch1);
                 
