@@ -48,6 +48,9 @@ if (!is_null($events['events'])) {
                     $result_text = 'ไม่พบข้อมูล';
                 }
 
+                $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($result_text);
+                $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+
             }else{
                 $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text);
                 $response = $bot->replyMessage($replyToken, $textMessageBuilder);
