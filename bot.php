@@ -5,6 +5,7 @@ $access_token = 'OS3ckApBsExdHU+lPbwqpN9joiqCF6Xkir7G8+3Odh3yoPU+b3eoZDmu0Yon7wd
 $channelSecret = 'dc4aa780d6557e4dc579fc51661eccbd';
 
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
+$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
 
 // Get POST body content
 $content = file_get_contents('php://input');
