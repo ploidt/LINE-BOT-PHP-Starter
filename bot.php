@@ -44,18 +44,21 @@ if (!is_null($events['events'])) {
                     $title = $val['recipe']['label'];
                     $text = $val['recipe']['label'];
                     $thumbnailImageUrl = $val['recipe']['image'];
-                    // $actionBuilders = [
-                    //   {
-                    //     "type": "uri",
-                    //     "label": "View detail",
-                    //     "uri": $val['recipe']['url'],
-                    //   },
-                    // ];
+                    $actions = array (
+                      // general message action
+                      // new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder("button 1", "text 1"),
+                      // URL type action
+                      new \LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder("View More", $val['recipe']['url'];),
+                      // The following two are interactive actions
+                      // new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("next page", "page=3"),
+
+                    );
+
                     // $multipleMessageBuilder->add(new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($result_text));
 
                 }
 
-                $templateMessageBuilder = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder($title, $text, $thumbnailImageUrl, []);
+                $templateMessageBuilder = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder($title, $text, $thumbnailImageUrl, $actions);
                 $response = $bot->replyMessage($replyToken, $templateMessageBuilder);
 
 
