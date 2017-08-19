@@ -41,7 +41,7 @@ if (!is_null($events['events'])) {
                 foreach($obj['hits'] as $key => $val){
 
                     $result_text = $val['recipe']['label'];
-                    $multipleMessageBuilder->add(new TextMessageBuilder($result_text));
+                    $multipleMessageBuilder->add(new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($result_text));
 
                 }
 
